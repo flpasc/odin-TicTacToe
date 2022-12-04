@@ -68,7 +68,12 @@ const Player = (userName, userSymbol) => {
 const game = () => {
 	let _currentPlayer = undefined;
 
-	const start = () => {};
+	const start = () => {
+		Gameboard.init();
+		const gameMode = () => {};
+		const chooseName = (name) => {};
+	};
+	const getCurrentPlayer = () => _currentPlayer;
 };
 
 const player1 = Player("flo", "O");
