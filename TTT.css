@@ -1,0 +1,32 @@
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: beige;
+}
+
+.content {
+	height: 80vh;
+	background-color: grey;
+	width: 80vh;
+}
+
+.game-board {
+	display: grid;
+	grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr;
+	grid-gap: 3px;
+}
+
+.field {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid black;
+	height: 26.24vh;
+}
+
+.field:hover {
+	background-color: beige;
+}
