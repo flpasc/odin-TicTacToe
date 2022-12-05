@@ -54,34 +54,44 @@ const Field = (fieldIndex) => {
 	};
 };
 
-const Player = (userName, userSymbol) => {
+const Player = (userName) => {
 	const name = () => userName;
 	const symbol = () => userSymbol;
 
 	return {
 		name,
 		symbol,
-		setName,
 	};
 };
 
 const Game = (() => {
+	let player1;
+	let player2;
 	let _currentMode = undefined;
 	let _currentPlayer = undefined;
 
 	const start = () => {
 		Gameboard.init();
 		setMode();
-		newPLayer();
 	};
 
 	const newPLayer = () => {
-		const 
-		const _username = document.getElementById("username");
+		const _username = document.getElementById("username").textContent;
 		const _confirm = document.getElementById("btn-confirm");
 		const _popup = document.getElementById("popup-name");
 
+		const setUsername = () => {
+			if (_username.length === 0) {
+				player1 = Player("Player 1");
+				_popup.style.display = "none";
+			} else {
+				player1 = Player(_username);
+				_popup.style.display = "none";
+			}
+		};
+
 		_popup.style.display = "flex";
+		_confirm.addEventListener("click", setUsername);
 	};
 
 	const setMode = () => {
@@ -91,20 +101,21 @@ const Game = (() => {
 
 		_popup.style.display = "flex";
 		_monkey.addEventListener("click", () => {
-			_currentMode = false;
+			_currentMode = "monkey";
 			_popup.style.display = "none";
+			newPLayer();
 		});
 		_computer.addEventListener("click", () => {
-			_currentMode = true;
+			_currentMode = "computer";
 			_popup.style.display = "none";
+			newPLayer();
 		});
 	};
 
-	const getCurrentPlayer = () => _currentPlayer;
-	const setUsernName = () => {};
-
 	return {
 		start,
+		newPLayer,
+		player1,
 	};
 })();
 
