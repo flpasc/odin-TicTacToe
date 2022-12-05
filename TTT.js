@@ -3,16 +3,18 @@ const Gameboard = (() => {
 	let _board = [];
 
 	const render = () => {
+		console.log("rendering..");
 		_board.forEach((field) => {
 			const newField = document.createElement("div");
 			newField.classList = "field";
-			newField.textContent = field.getStatus();
+			newField.textContent = field.status;
 			newField.addEventListener("click", field.set);
 			gameArea.appendChild(newField);
 		});
 	};
 
 	const init = () => {
+		console.log("initializing..");
 		for (i = 0; i < 9; i++) {
 			let newField = Field(i);
 			_board.push(newField);
@@ -31,13 +33,12 @@ const Gameboard = (() => {
 	};
 })();
 
-const Field = (fieldIndex) => {
+const Field = (index) => {
 	let status = "";
 
-	const getStatus = () => status;
 	const set = () => {
 		if (status != "") {
-			console.log("occupied cell");
+			console.log("occupied cell" + status);
 			console.log(status);
 		} else if (status === "") {
 			console.log("empty cell");
@@ -47,76 +48,59 @@ const Field = (fieldIndex) => {
 		}
 	};
 	return {
-		fieldIndex,
+		index,
 		set,
 		status,
-		getStatus,
 	};
 };
 
-const Player = (userName) => {
-	const name = () => userName;
-	const symbol = () => userSymbol;
+const Player = (name, symbol) => {
+	let points = 0;
 
+	const addPoint = () => points++;
 	return {
 		name,
 		symbol,
+		points,
 	};
 };
 
-const Game = (() => {
-	let player1;
-	let player2;
-	let _currentMode = undefined;
-	let _currentPlayer = undefined;
+const Game = () => {
+	let players = [];
+	let gamemode = undefined;
 
-	const start = () => {
-		Gameboard.init();
-		setMode();
-	};
+	const getGamemode = () => gamemode;
+	const setGamemode = (mode) => (gamemode = mode);
 
-	const newPLayer = () => {
-		const _username = document.getElementById("username").textContent;
-		const _confirm = document.getElementById("btn-confirm");
-		const _popup = document.getElementById("popup-name");
+	Gameboard.init();
 
-		const setUsername = () => {
-			if (_username.length === 0) {
-				player1 = Player("Player 1");
-				_popup.style.display = "none";
-			} else {
-				player1 = Player(_username);
-				_popup.style.display = "none";
-			}
-		};
-
-		_popup.style.display = "flex";
-		_confirm.addEventListener("click", setUsername);
-	};
-
-	const setMode = () => {
+	if (gamemode === undefined) {
 		const _popup = document.getElementById("popup-mode");
 		const _monkey = document.getElementById("btn-monkey");
-		const _computer = document.getElementById("btn-KI");
+		const _human = document.getElementById("btn-KI");
+		const setMode = (mode) => (gamemode = mode);
 
 		_popup.style.display = "flex";
 		_monkey.addEventListener("click", () => {
-			_currentMode = "monkey";
+			setGamemode("monkey");
 			_popup.style.display = "none";
-			newPLayer();
+			console.log(gamemode);
 		});
-		_computer.addEventListener("click", () => {
-			_currentMode = "computer";
+		_human.addEventListener("click", () => {
+			setGamemode("computer");
 			_popup.style.display = "none";
-			newPLayer();
+			console.log(gamemode);
 		});
-	};
+	}
+
+	if (players.length === 0) {
+	}
 
 	return {
-		start,
-		newPLayer,
-		player1,
+		gamemode,
+		getGamemode,
+		setGamemode,
 	};
-})();
+};
 
-Game.start();
+const TicTacToe = Game();
