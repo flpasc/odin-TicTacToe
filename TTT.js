@@ -24,7 +24,6 @@ const Gameboard = (() => {
 		console.log("reseting..");
 		gameArea.innerHTML = "";
 	};
-
 	return {
 		init,
 		render,
@@ -33,7 +32,6 @@ const Gameboard = (() => {
 })();
 
 const Field = (fieldIndex) => {
-	const index = fieldIndex;
 	let status = "";
 
 	const getStatus = () => status;
@@ -49,7 +47,7 @@ const Field = (fieldIndex) => {
 		}
 	};
 	return {
-		index,
+		fieldIndex,
 		set,
 		status,
 		getStatus,
@@ -59,26 +57,55 @@ const Field = (fieldIndex) => {
 const Player = (userName, userSymbol) => {
 	const name = () => userName;
 	const symbol = () => userSymbol;
+
 	return {
 		name,
 		symbol,
+		setName,
 	};
 };
 
-const game = () => {
+const Game = (() => {
+	let _currentMode = undefined;
 	let _currentPlayer = undefined;
 
 	const start = () => {
 		Gameboard.init();
-		const gameMode = () => {};
-		const chooseName = (name) => {};
+		setMode();
+		newPLayer();
 	};
+
+	const newPLayer = () => {
+		const 
+		const _username = document.getElementById("username");
+		const _confirm = document.getElementById("btn-confirm");
+		const _popup = document.getElementById("popup-name");
+
+		_popup.style.display = "flex";
+	};
+
+	const setMode = () => {
+		const _popup = document.getElementById("popup-mode");
+		const _monkey = document.getElementById("btn-monkey");
+		const _computer = document.getElementById("btn-KI");
+
+		_popup.style.display = "flex";
+		_monkey.addEventListener("click", () => {
+			_currentMode = false;
+			_popup.style.display = "none";
+		});
+		_computer.addEventListener("click", () => {
+			_currentMode = true;
+			_popup.style.display = "none";
+		});
+	};
+
 	const getCurrentPlayer = () => _currentPlayer;
-};
+	const setUsernName = () => {};
 
-const player1 = Player("flo", "O");
-const player2 = Player("bot", "X");
+	return {
+		start,
+	};
+})();
 
-player = player1;
-
-Gameboard.init();
+Game.start();
