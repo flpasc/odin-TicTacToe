@@ -46,6 +46,35 @@ body {
 	font-size: clamp(5px, 4vh, 40px);
 }
 
+.name {
+	display: none;
+}
+
+.mode {
+	display: none;
+	height: 10vh;
+	width: 20vw;
+	left: 32.8%;
+	flex-direction: row;
+}
+
+.symbol {
+	display: none;
+	height: 14vh;
+	width: 20vw;
+	left: 32.8%;
+}
+
+.symbol > div {
+	flex-direction: row;
+}
+
+.mode > button {
+	margin: 5px;
+	padding: minmax(10px, 60px) minmax(10px, 70px);
+	font-size: minmax(10px, 35px);
+}
+
 input[type="text"] {
 	font-size: clamp(5px, 3vh, 40px);
 	padding: 10px 20px;
@@ -54,4 +83,10 @@ input[type="text"] {
 h2 {
 	margin: 0px;
 	padding: 10px;
+}
+
+button {
+	margin: 30px 20px;
+	padding: 15px 20px;
+	font-size: clamp(5px, 2vh, 40px);
 }

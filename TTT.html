@@ -10,9 +10,20 @@
 	<body>
 		<div class="content">
 			<div id="game-board" class="game-board"></div>
-			<div class="popup">
-				<h2>Enter Name:</h2>
-				<input type="text" name="player_name" id="name" />
+			<div id="popup-name" class="popup name">
+				<input type="text" name="player_name" id="username" placeholder="Player 1" />
+				<button id="btn-confirm">Enter</button>
+			</div>
+			<div id="popup-mode" class="popup mode">
+				<button id="btn-monkey">vs Monkey</button>
+				<button id="btn-KI">vs KI</button>
+			</div>
+			<div id="popup-symbol" class="popup symbol">
+				<h8>Choose wisely</h8>
+				<div>
+					<button id="btn-O">O</button>
+					<button id="btn-X">X</button>
+				</div>
 			</div>
 		</div>
 		<script src="./TTT.js"></script>
