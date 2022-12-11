@@ -159,7 +159,7 @@ const Game = () => {
 			container.textContent = "It's a TIE";
 		} else if (result === "won") {
 			console.log("won Popup");
-			container.textContent = `${TicTacToe.currentPlayer.name}, WON`;
+			container.textContent = `${TicTacToe.currentPlayer.name} WON`;
 		} else if (result === "lost") {
 			console.log("lost popup");
 			container.textContent = "You LOST";

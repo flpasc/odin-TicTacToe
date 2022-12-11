@@ -1,4 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
 body {
+	font-family: "Indie Flower", cursive;
+	background-image: url("https://static.vecteezy.com/system/resources/previews/003/303/818/original/empty-classroom-scene-with-interior-decoration-and-objects-free-vector.jpg");
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -9,27 +13,59 @@ body {
 }
 
 h1 {
-	font-size: 6vh;
-	padding-top: 5vh;
+	border-radius: 40px;
+	padding: 5px;
+	background-color: rgba(23, 95, 41, 0.9);
+	font-size: 10vh;
+	margin-top: 18vh;
+	margin-bottom: 1vh;
 }
 
 button {
+	font-family: "Indie Flower", cursive;
+
 	margin: 20px 10px;
 	padding: 10px 20px;
+	font-size: 2vh;
+	font-weight: 900;
+}
+
+input {
+	padding: 1vh;
+	margin: 4px;
 }
 
 .player {
+	border: 1px solid black;
+	box-shadow: 2px 2px 4px;
 	position: relative;
 	top: -20%;
 	background-color: rgb(195, 210, 101);
 	width: 20vw;
 	height: 30vh;
 	margin: 2vw;
+	font-family: "Indie Flower", cursive;
+}
+
+#player2-name,
+#player1-name {
+	font-weight: 900;
+	font-size: 8vh;
 }
 
 .name-selection {
 	display: none;
 	flex-direction: column;
+}
+
+.name-selection > button {
+	box-shadow: 1px 1px 2px;
+}
+
+.name-selection > button:hover {
+	box-shadow: 0px 0px 0px;
+	transform: scale(1.2);
+	background-color: rgba(128, 128, 128);
 }
 
 .player > div {
@@ -51,16 +87,19 @@ button {
 }
 
 .popup-container {
+	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: rgb(222, 87, 87);
 	height: auto;
-	width: auto;
+	width: 20vw;
 	position: absolute;
-	left: 42vw;
+	left: 38vw;
 	top: 20%;
 	padding: 2vh;
+	font-size: 4vh;
+	font-weight: 900;
 }
 
 .popup {
@@ -70,7 +109,11 @@ button {
 }
 
 .gameboard {
-	background-color: rgb(108, 108, 233);
+	background-image: url("https://i.pinimg.com/736x/0b/41/25/0b41253a4041ddb57004d633e4979430--crumpled-paper-paper-texture.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 1px solid black;
+	box-shadow: 5px 5px 10px rgb(65, 55, 55);
 	width: 100%;
 	height: 100%;
 	display: grid;
@@ -79,11 +122,24 @@ button {
 }
 
 .field {
-	border: 1px solid black;
 	height: 98.8%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 0px;
+	padding: 0px;
+	font-family: "Indie Flower", cursive;
+	font-size: 12vh;
+}
+
+.field:nth-child(3n + 2) {
+	border-left: 4px solid rgb(120, 111, 111);
+	border-right: 4px solid rgb(74, 71, 71);
+}
+
+.field:nth-child(n + 4):nth-child(-n + 6) {
+	border-top: 4px solid rgb(182, 170, 170);
+	border-bottom: 4px solid rgb(129, 113, 113);
 }
 
 #popup-container {
@@ -108,11 +164,4 @@ button {
 	transform: scale(0.98);
 	box-shadow: 0px 0px 0px;
 	background-color: rgba(128, 128, 128, 0.418);
-}
-
-#gameover-popup {
-	text-align: center;
-	justify-content: center;
-	height: 2vh;
-	font-size: 3vh;
 }
