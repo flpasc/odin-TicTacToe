@@ -8,24 +8,37 @@
 		<link rel="stylesheet" href="./TTT.css" />
 	</head>
 	<body>
+		<h1>Tic Tac Toe</h1>
 		<div class="content">
-			<div id="game-board" class="game-board"></div>
-			<div id="popup-name" class="popup name">
-				<input type="text" name="player_name" id="username" placeholder="Player 1" />
-				<button id="btn-confirm">Enter</button>
+			<div class="player p1">
+				<div id="player1-name">Player1</div>
+				<div id="player1-points">0</div>
 			</div>
-			<div id="popup-mode" class="popup mode">
-				<button id="btn-monkey">vs Monkey</button>
-				<button id="btn-KI">vs KI</button>
-			</div>
-			<div id="popup-symbol" class="popup symbol">
-				<h8>Choose wisely</h8>
-				<div>
-					<button id="btn-O">O</button>
-					<button id="btn-X">X</button>
+			<div class="game-content">
+				<div id="popup-container" class="popup-container">
+					<div class="name-selection" id="name-selection">
+						<input id="player1" type="text" placeholder="X" />
+						<input id="player2" type="text" placeholder="O" />
+						<button id="btn-start">Start</button>
+					</div>
+
+					<div id="mode-selection" class="popup mode">
+						<button>vs. big Monkey</button>
+						<button>vs. KI</button>
+					</div>
+					<div id="gameover-popup" class="popup gameover"></div>
 				</div>
+				<div id="gameboard" class="gameboard"></div>
+			</div>
+			<div class="player p2">
+				<div id="player2-name">Player2</div>
+				<div id="player2-points">0</div>
 			</div>
 		</div>
+		<div class="game control">
+			<button id="restart">Reset</button>
+		</div>
+
 		<script src="./TTT.js"></script>
 	</body>
 </html>
