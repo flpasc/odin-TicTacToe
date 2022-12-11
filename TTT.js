@@ -8,6 +8,12 @@ const Gameboard = (() => {
 		}
 	};
 
+	const removeListener = () => {
+		const fields = document.querySelectorAll(".field");
+		console.log("removing..");
+		fields.removeEventListener("click", handleClick);
+	};
+
 	const render = () => {
 		let index = 0;
 		board.forEach((field) => {
@@ -50,6 +56,8 @@ const Gameboard = (() => {
 		render,
 		board,
 		reset,
+		handleClick,
+		removeListener,
 	};
 })();
 
@@ -85,7 +93,6 @@ const Game = () => {
 
 	const rowOfThree = () => {
 		console.log("checking..");
-
 		let result = false;
 		winningConditions.forEach((combination) => {
 			if (
@@ -95,6 +102,7 @@ const Game = () => {
 			) {
 				console.log("ROW OF THREE");
 				result = true;
+				Gameboard.reset();
 			}
 		});
 
