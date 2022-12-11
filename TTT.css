@@ -3,6 +3,7 @@
 body {
 	font-family: "Indie Flower", cursive;
 	background-image: url("https://static.vecteezy.com/system/resources/previews/003/303/818/original/empty-classroom-scene-with-interior-decoration-and-objects-free-vector.jpg");
+	background-size: ;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -19,6 +20,7 @@ h1 {
 	font-size: 10vh;
 	margin-top: 18vh;
 	margin-bottom: 1vh;
+	text-decoration: underline;
 }
 
 button {
@@ -33,9 +35,15 @@ button {
 input {
 	padding: 1vh;
 	margin: 4px;
+	font-size: 2vh;
+	font-family: "Indie Flower", cursive;
 }
 
 .player {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid black;
 	box-shadow: 2px 2px 4px;
 	position: relative;
@@ -45,11 +53,20 @@ input {
 	height: 30vh;
 	margin: 2vw;
 	font-family: "Indie Flower", cursive;
+	padding-top: 1vh;
 }
 
 #player2-name,
 #player1-name {
+	padding-top: 1vh;
+	text-decoration: underline;
 	font-weight: 900;
+	font-size: 6vh;
+}
+
+#player1-points,
+#player2-points {
+	padding-top: 1vh;
 	font-size: 8vh;
 }
 
@@ -87,18 +104,19 @@ input {
 }
 
 .popup-container {
+	border-radius: 50px;
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgb(222, 87, 87);
+	background-color: rgba(213, 115, 45, 0.813);
 	height: auto;
 	width: 20vw;
 	position: absolute;
 	left: 38vw;
-	top: 20%;
+	top: 30%;
 	padding: 2vh;
-	font-size: 4vh;
+	font-size: 6vh;
 	font-weight: 900;
 }
 
@@ -140,6 +158,11 @@ input {
 .field:nth-child(n + 4):nth-child(-n + 6) {
 	border-top: 4px solid rgb(182, 170, 170);
 	border-bottom: 4px solid rgb(129, 113, 113);
+}
+
+.field:hover {
+	transform: scale(1.02);
+	background-color: rgba(153, 107, 107, 0.536);
 }
 
 #popup-container {
