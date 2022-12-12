@@ -1,3 +1,5 @@
+// 3x3 game area
+
 const Gameboard = (() => {
 	const gameArea = document.getElementById("gameboard");
 	let board = [];
@@ -61,6 +63,7 @@ const Gameboard = (() => {
 	};
 })();
 
+// player object
 const Player = (name, mark, isHuman) => {
 	let points = 0;
 	const addPoint = () => {};
@@ -73,6 +76,7 @@ const Player = (name, mark, isHuman) => {
 	};
 };
 
+// game handle object
 const Game = () => {
 	const btnReset = document.getElementById("restart");
 	let player1;
@@ -149,7 +153,7 @@ const Game = () => {
 			TicTacToe.currentPlayer = TicTacToe.player1;
 		}
 	};
-
+	// toggles popup container on/off related to parameter passed
 	const togglePopupOn = (result) => {
 		const container = document.getElementById("popup-container");
 		const newGamePopup = document.getElementById("name-selection");
