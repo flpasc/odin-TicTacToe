@@ -29,14 +29,20 @@ const Gameboard = (() => {
 		});
 	};
 
+	const reload = () => {
+		gameArea.textContent = "";
+		Gameboard.render();
+	};
+
 	const reset = () => {
 		gameArea.textContent = "";
 		board.length = 0;
+		TicTacToe.gameOver = false;
+		TicTacToe.currentPlayer = TicTacToe.player1;
 	};
 
 	const handleClick = (e) => {
 		const { target } = e;
-
 		if (target.textContent === "") {
 			target.textContent = TicTacToe.currentPlayer.mark;
 			TicTacToe.nextRound();
@@ -45,9 +51,12 @@ const Gameboard = (() => {
 			if (TicTacToe.rowOfThree()) {
 				TicTacToe.togglePopupOn("won");
 				TicTacToe.currentPlayer.points++;
+				TicTacToe.gameOver = true;
 			}
 
 			if (TicTacToe.currentRound === 9 && !TicTacToe.rowOfThree()) {
+				TicTacToe.togglePopupOn("tie");
+				TicTacToe.gameOver = true;
 			}
 		}
 		TicTacToe.nextPlayer();
@@ -60,13 +69,13 @@ const Gameboard = (() => {
 		reset,
 		handleClick,
 		removeListener,
+		reload,
 	};
 })();
 
 // player object
 const Player = (name, mark, isHuman) => {
 	let points = 0;
-	const addPoint = () => {};
 
 	return {
 		name,
@@ -107,6 +116,7 @@ const Game = () => {
 				console.log("ROW OF THREE");
 				result = true;
 				Gameboard.reset();
+				TicTacToe.gameOver = true;
 			}
 		});
 
@@ -133,7 +143,8 @@ const Game = () => {
 				player1UIname.textContent = p1;
 			}
 			if (p2 === "") {
-				TicTacToe.player2 = Player("Player2", "O", true);
+				TicTacToe.player2 = Player("BrRAin", "O", false);
+				player2UIname.textContent = "BrRAin";
 			} else if (p2 != "") {
 				TicTacToe.player2 = Player(p2, "O", true);
 				player2UIname.textContent = p2;
@@ -152,7 +163,11 @@ const Game = () => {
 		} else {
 			TicTacToe.currentPlayer = TicTacToe.player1;
 		}
+		if (TicTacToe.currentPlayer.isHuman === false) {
+			TicTacToe.computerTurn();
+		}
 	};
+
 	// toggles popup container on/off related to parameter passed
 	const togglePopupOn = (result) => {
 		const container = document.getElementById("popup-container");
@@ -173,13 +188,36 @@ const Game = () => {
 		}
 	};
 
+	const computerTurn = () => {
+		if (TicTacToe.gameOver === false) {
+			console.log(TicTacToe.currentPlayer);
+			console.log("computer turn");
+			let rndField = Math.floor(Math.random() * 8);
+
+			if (Gameboard.board[rndField] === "") {
+				Gameboard.board[rndField] = TicTacToe.currentPlayer.mark;
+				console.log(Gameboard.board);
+				if (TicTacToe.rowOfThree()) {
+					togglePopupOn("won");
+					TicTacToe.currentPlayer.points++;
+				}
+				TicTacToe.nextPlayer();
+				TicTacToe.nextRound();
+				Gameboard.reload();
+			} else {
+				computerTurn();
+			}
+		} else if (TicTacToe.gameOver === true) {
+			return;
+		}
+	};
+
 	const togglePopupOff = () => {
 		const container = document.getElementById("popup-container");
 		container.style.display = "none";
 	};
 
 	const nextRound = () => TicTacToe.currentRound++;
-	const declareWinner = () => {};
 
 	const restartGame = () => {
 		const player1Points = document.getElementById("player1-points");
@@ -204,6 +242,8 @@ const Game = () => {
 		togglePopupOn,
 		togglePopupOff,
 		newGame,
+		computerTurn,
+		gameOver,
 	};
 };
 
