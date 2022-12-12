@@ -38,7 +38,6 @@ const Gameboard = (() => {
 		gameArea.textContent = "";
 		board.length = 0;
 		TicTacToe.gameOver = false;
-		TicTacToe.currentPlayer = TicTacToe.player1;
 	};
 
 	const handleClick = (e) => {
@@ -52,11 +51,13 @@ const Gameboard = (() => {
 				TicTacToe.togglePopupOn("won");
 				TicTacToe.currentPlayer.points++;
 				TicTacToe.gameOver = true;
+				TicTacToe.currentPlayer = TicTacToe.player1;
 			}
 
 			if (TicTacToe.currentRound === 9 && !TicTacToe.rowOfThree()) {
 				TicTacToe.togglePopupOn("tie");
 				TicTacToe.gameOver = true;
+				TicTacToe.currentPlayer = TicTacToe.player1;
 			}
 		}
 		TicTacToe.nextPlayer();
@@ -190,20 +191,22 @@ const Game = () => {
 
 	const computerTurn = () => {
 		if (TicTacToe.gameOver === false) {
-			console.log(TicTacToe.currentPlayer);
-			console.log("computer turn");
 			let rndField = Math.floor(Math.random() * 8);
 
 			if (Gameboard.board[rndField] === "") {
 				Gameboard.board[rndField] = TicTacToe.currentPlayer.mark;
-				console.log(Gameboard.board);
 				if (TicTacToe.rowOfThree()) {
+					TicTacToe.currentPlayer = TicTacToe.player2;
+					console.log(TicTacToe.currentPlayer);
 					togglePopupOn("won");
 					TicTacToe.currentPlayer.points++;
+					TicTacToe.nextPlayer();
+					TicTacToe.currentPlayer = TicTacToe.player1;
+				} else {
+					TicTacToe.nextPlayer();
+					TicTacToe.nextRound();
+					Gameboard.reload();
 				}
-				TicTacToe.nextPlayer();
-				TicTacToe.nextRound();
-				Gameboard.reload();
 			} else {
 				computerTurn();
 			}
@@ -214,6 +217,7 @@ const Game = () => {
 
 	const togglePopupOff = () => {
 		const container = document.getElementById("popup-container");
+		container.textContent = "";
 		container.style.display = "none";
 	};
 
